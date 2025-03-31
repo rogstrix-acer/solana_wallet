@@ -1,7 +1,23 @@
+/**
+ * @module token
+ * @description Provides functionality for creating, minting, and managing Solana tokens using the SPL Token program.
+ * This module handles token creation, minting new tokens, transferring tokens between accounts, and checking token balances.
+ */
+
 import { createMint, getOrCreateAssociatedTokenAccount, mintTo, transfer } from '@solana/spl-token';
 import { Keypair, PublicKey } from '@solana/web3.js';
 import { connection } from './connection.js';
 
+/**
+ * Creates a new SPL token with a generated mint address.
+ * @async
+ * @param {Object} provider - The wallet provider (e.g., Phantom wallet)
+ * @param {boolean} provider.isConnected - Whether the wallet is connected
+ * @param {PublicKey} provider.publicKey - The public key of the wallet
+ * @param {Function} provider.signTransaction - Function to sign transactions
+ * @returns {Promise<{mint: PublicKey, tokenAccount: Object}>} The created mint address and associated token account
+ * @throws {Error} If provider is undefined, wallet not connected, or transaction fails
+ */
 export async function createNewToken(provider) {
   try {
     if (!provider) throw new Error('Provider is undefined');
@@ -47,6 +63,16 @@ export async function createNewToken(provider) {
   }
 }
 
+/**
+ * Mints specified amount of tokens to a token account.
+ * @async
+ * @param {Object} provider - The wallet provider
+ * @param {PublicKey} mint - The mint address of the token
+ * @param {Object} tokenAccount - The token account to mint to
+ * @param {number} amount - The amount of tokens to mint
+ * @returns {Promise<string>} Transaction signature
+ * @throws {Error} If minting fails or wallet not connected
+ */
 export async function mintTokens(provider, mint, tokenAccount, amount) {
   try {
     if (!provider.isConnected) throw new Error('Wallet not connected');
@@ -65,6 +91,17 @@ export async function mintTokens(provider, mint, tokenAccount, amount) {
   }
 }
 
+/**
+ * Transfers tokens from one account to another.
+ * @async
+ * @param {Object} provider - The wallet provider
+ * @param {PublicKey} mint - The mint address of the token
+ * @param {Object} sourceTokenAccount - The source token account
+ * @param {string} destinationAddress - The recipient's wallet address
+ * @param {number} amount - The amount of tokens to transfer
+ * @returns {Promise<string>} Transaction signature
+ * @throws {Error} If transfer fails or wallet not connected
+ */
 export async function sendTokens(provider, mint, sourceTokenAccount, destinationAddress, amount) {
   try {
     if (!provider.isConnected) throw new Error('Wallet not connected');
@@ -89,6 +126,13 @@ export async function sendTokens(provider, mint, sourceTokenAccount, destination
   }
 }
 
+/**
+ * Gets the current balance of a token account.
+ * @async
+ * @param {Object} tokenAccount - The token account to check
+ * @returns {Promise<number>} The token balance
+ * @throws {Error} If balance fetch fails
+ */
 export async function getTokenBalance(tokenAccount) {
   try {
     const balance = await connection.getTokenAccountBalance(tokenAccount.address);

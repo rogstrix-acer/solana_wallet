@@ -1,6 +1,22 @@
+/**
+ * @module wallet
+ * @description Provides functionality for connecting to and managing a Solana wallet.
+ * This module handles wallet connection, disconnection, and transaction history retrieval.
+ */
+
 import { connection } from './connection.js';
 import { PublicKey } from '@solana/web3.js';
 
+/**
+ * Connects to a Phantom wallet and retrieves the wallet's public key and SOL balance.
+ * @async
+ * @param {Object} provider - The Phantom wallet provider
+ * @param {boolean} provider.isPhantom - Whether the provider is Phantom
+ * @param {Function} provider.connect - Function to connect to the wallet
+ * @param {PublicKey} provider.publicKey - The public key of the wallet after connection
+ * @returns {Promise<{publicKey: string, balance: number}>} The wallet's public key and SOL balance
+ * @throws {Error} If Phantom wallet is not found or connection fails
+ */
 export async function connectWallet(provider) {
   try {
     if (!provider || !provider.isPhantom) {
@@ -17,6 +33,15 @@ export async function connectWallet(provider) {
   }
 }
 
+/**
+ * Disconnects from the currently connected Phantom wallet.
+ * @async
+ * @param {Object} provider - The Phantom wallet provider
+ * @param {boolean} provider.isConnected - Whether the wallet is currently connected
+ * @param {Function} provider.disconnect - Function to disconnect from the wallet
+ * @returns {Promise<string>} A message indicating the disconnection status
+ * @throws {Error} If disconnection fails
+ */
 export async function disconnectWallet(provider) {
   try {
     if (provider.isConnected) {
@@ -29,6 +54,13 @@ export async function disconnectWallet(provider) {
   }
 }
 
+/**
+ * Retrieves recent transaction history for a wallet address.
+ * @async
+ * @param {string|PublicKey} publicKey - The public key of the wallet
+ * @returns {Promise<Array<Object>>} Array of recent transactions with signatures and timestamps
+ * @throws {Error} If transaction history fetch fails
+ */
 export async function getTransactionHistory(publicKey) {
   try {
     const signatures = await connection.getSignaturesForAddress(new PublicKey(publicKey), { limit: 5 });

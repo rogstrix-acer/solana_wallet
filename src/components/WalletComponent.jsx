@@ -1,3 +1,9 @@
+/**
+ * @component WalletComponent
+ * @description A React component that provides a user interface for interacting with Solana blockchain.
+ * Supports wallet connection, token creation, minting, sending tokens, and viewing transaction history.
+ */
+
 'use client';
 
 import { useState, useEffect } from 'react';
