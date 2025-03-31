@@ -20,7 +20,7 @@ A modern web application for interacting with the Solana blockchain, built with 
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone solana_wallet
 cd solana_wallet
 ```
 
