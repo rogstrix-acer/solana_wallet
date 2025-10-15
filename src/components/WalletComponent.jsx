@@ -112,6 +112,7 @@ export default function WalletComponent() {
     }
   };
 
+  // TThis is function to handle wallet connection
   const handleConnectWallet = () => executeWithLoading(
     async () => {
       if (!provider) throw new Error('No Phantom wallet detected');
