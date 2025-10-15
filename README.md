@@ -1,6 +1,6 @@
 # Solana Wallet Web Application
 
-A modern web application for interacting with the Solana blockchain, built with Next.js and the Solana Web3.js library. This wallet interface allows users to connect their Phantom wallet, view balances, and track transaction history on the Solana devnet.
+A modern web application for interacting with the Solana blockchain, built with Next.js and the Solana Web3.js library. This wallet interface allows users to connect their Phantom wallet, view balances.
 
 ## Features
 
