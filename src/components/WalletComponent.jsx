@@ -150,6 +150,7 @@ export default function WalletComponent() {
     }
   );
 
+  // This is function to handle minting tokens
   const handleMintTokens = () => executeWithLoading(
     async () => {
       if (!provider || !publicKey) throw new Error('Please connect your wallet first');
@@ -159,6 +160,8 @@ export default function WalletComponent() {
     }
   );
 
+
+  // This is function to handle sending tokens
   const handleSendTokens = () => executeWithLoading(
     async () => {
       if (!provider || !publicKey) throw new Error('Please connect your wallet first');
@@ -169,6 +172,7 @@ export default function WalletComponent() {
     }
   );
 
+  // This is function to handle checking token balance
   const handleCheckBalance = () => executeWithLoading(
     async () => {
       if (!provider || !publicKey) throw new Error('Please connect your wallet first');
@@ -178,6 +182,7 @@ export default function WalletComponent() {
     }
   );
 
+  // This is function to handle fetching transaction history
   const handleTransactionHistory = () => executeWithLoading(
     async () => {
       if (!provider || !publicKey) throw new Error('Please connect your wallet first');
