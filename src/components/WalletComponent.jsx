@@ -124,6 +124,7 @@ export default function WalletComponent() {
     }
   );
 
+  // This is function to handle wallet disconnection
   const handleDisconnectWallet = () => executeWithLoading(
     async () => {
       if (!provider) throw new Error('No wallet to disconnect');
@@ -137,6 +138,7 @@ export default function WalletComponent() {
     }
   );
 
+  // This is function to handle token creation
   const handleCreateToken = () => executeWithLoading(
     async () => {
       if (!provider || !publicKey) throw new Error('Please connect your wallet first');
