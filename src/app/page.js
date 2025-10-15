@@ -1,5 +1,6 @@
 import WalletComponent from '../components/WalletComponent';
 
+// This is home page
 export default function Home() {
   return (
     <div>
